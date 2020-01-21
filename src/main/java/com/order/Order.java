@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Order")
 public class Order {
-    @Ids
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer totalAmount;

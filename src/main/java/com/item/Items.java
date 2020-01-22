@@ -33,7 +33,7 @@ public class Items {
         return items.get();
     }
 
-    public void createItem(ItemAdditionalParametrsDto addInfo) {
+    public Item createItem(ItemAdditionalParametrsDto addInfo) {
         String name = addInfo.getName();
         Integer amount = addInfo.getAmount();
         Double price = addInfo.getPrice();
@@ -42,12 +42,14 @@ public class Items {
         add.setAmount(amount);
         add.setPrice(price);
         itemRepository.save(add);
+        return add;
     }
 
-    public void updateItem(Integer id, Integer amount) {
+    public Item updateItem(Integer id, Integer amount) {
         Item item = getItem(id);
         item.setAmount(amount);
         itemRepository.save(item);
+        return item;
     }
 
 

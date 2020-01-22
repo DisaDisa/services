@@ -11,8 +11,6 @@ import java.util.logging.Logger;
 @RestController
 public class ItemController {
     private final Items itemController;
-
-
     private static Logger log = Logger.getLogger(ItemController.class.getName());
 
     public ItemController(Items itemController) {

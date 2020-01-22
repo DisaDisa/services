@@ -1,6 +1,7 @@
 package com.item;
 
 import com.item.dto.ItemAdditionalParametrsDto;
+import com.item.dto.ItemCreationDto;
 import com.item.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class Items {
         return items.get();
     }
 
-    public void createItem(ItemAdditionalParametrsDto addInfo) {
+    public void createItem(ItemCreationDto addInfo) {
         String name = addInfo.getName();
         Integer amount = addInfo.getAmount();
         Double price = addInfo.getPrice();

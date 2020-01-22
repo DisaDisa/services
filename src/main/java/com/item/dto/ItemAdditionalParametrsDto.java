@@ -1,16 +1,16 @@
 package com.item.dto;
 
 public class ItemAdditionalParametrsDto {
-    private String name;
+    private Integer id;
     private Integer amount;
-    private Double price;
+    private String username;
 
-    public String getName() {
-        return name;
+    public Integer getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getAmount() {
@@ -21,12 +21,11 @@ public class ItemAdditionalParametrsDto {
         this.amount = amount;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
 }

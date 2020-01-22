@@ -1,6 +1,6 @@
 package com.item.dto;
 
-public class ItemAdditionalParametrsDto {
+public class ItemCreationDto {
     private String name;
     private Integer amount;
     private Double price;

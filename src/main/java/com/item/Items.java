@@ -1,12 +1,10 @@
 package com.item;
 
-import com.item.dto.ItemAdditionalParametrsDto;
+import com.item.dto.ItemCreationDto;
 import com.item.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Table;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +31,7 @@ public class Items {
         return items.get();
     }
 
-    public Item createItem(ItemAdditionalParametrsDto addInfo) {
+    public Item createItem(ItemCreationDto addInfo) {
         String name = addInfo.getName();
         Integer amount = addInfo.getAmount();
         Double price = addInfo.getPrice();

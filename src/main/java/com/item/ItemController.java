@@ -1,8 +1,7 @@
 package com.item;
 
 
-import com.item.dto.ItemAdditionalParametrsDto;
-import com.item.repository.ItemRepository;
+import com.item.dto.ItemCreationDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class ItemController {
     }
 
     @PostMapping("api/warehouse/items")
-    public void createItem(@RequestBody ItemAdditionalParametrsDto addInfo) {
+    public void createItem(@RequestBody ItemCreationDto addInfo) {
         itemController.createItem(addInfo);
     }
 

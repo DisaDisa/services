@@ -1,4 +1,4 @@
-package com.item.dto;
+package com.order.dto;
 
 public class ItemAdditionalParametrsDto {
     private Integer id;

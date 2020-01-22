@@ -1,7 +1,6 @@
 package com.order;
 
-import com.item.dto.ItemAdditionalParametrsDto;
-import com.item.repository.ItemRepository;
+import com.order.dto.ItemAdditionalParametrsDto;
 import com.order.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 

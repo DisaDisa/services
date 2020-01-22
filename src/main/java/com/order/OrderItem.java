@@ -15,12 +15,12 @@ public class OrderItem {
     @ManyToOne
     @MapsId("order_id")
     @JoinColumn(name = "order_id")
-    Order order;
+    Order orderId;
 
     @ManyToOne
     @MapsId("item_id")
     @JoinColumn(name = "item_id")
-    Item item;
+    Item itemId;
 
     private Integer amount;
 

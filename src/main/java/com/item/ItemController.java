@@ -1,9 +1,7 @@
 package com.item;
 
 
-import com.item.dto.ItemAdditionalParametrsDto;
 import com.item.dto.ItemCreationDto;
-import com.item.repository.ItemRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +10,6 @@ import java.util.logging.Logger;
 @RestController
 public class ItemController {
     private final Items itemController;
-
-
     private static Logger log = Logger.getLogger(ItemController.class.getName());
 
     public ItemController(Items itemController) {

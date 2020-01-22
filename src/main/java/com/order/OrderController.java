@@ -1,6 +1,6 @@
 package com.order;
 
-import com.item.dto.ItemAdditionalParametrsDto;
+import com.order.dto.ItemAdditionalParametrsDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

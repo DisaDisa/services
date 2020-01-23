@@ -2,7 +2,6 @@ package com.item;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "Items")
 public class Item {

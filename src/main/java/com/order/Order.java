@@ -1,5 +1,7 @@
 package com.order;
 
+import com.order.types.OrderStatus;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,7 @@ public class Order {
     private Integer id;
     private Integer totalAmount;
     private Double totalCost;
-    private Integer status;
+    private OrderStatus status;
 
     public Integer getId() {
         return id;
@@ -36,11 +38,11 @@ public class Order {
         this.totalCost = totalCost;
     }
 
-    public Integer getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 }

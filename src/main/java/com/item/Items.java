@@ -45,7 +45,7 @@ public class Items {
 
     public Item updateItem(Integer id, Integer amount) {
         Item item = getItem(id);
-        item.setAmount(amount);
+        item.setAmount(item.getAmount() + amount);
         itemRepository.save(item);
         return item;
     }

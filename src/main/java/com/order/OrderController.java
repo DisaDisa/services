@@ -1,6 +1,7 @@
 package com.order;
 
 import com.order.dto.ItemAdditionalParametrsDto;
+import com.order.dto.OrderDto;
 import com.order.types.OrderStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -16,26 +17,26 @@ public class OrderController {
         this.ordersController = ordersController;
     }
 
-    @RequestMapping(value = "/api/orders", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/api/orders")
     public List<Order> getOrders() {
         return ordersController.getOrders();
     }
 
-    @RequestMapping(value = "/api/orders/{order_id}", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/api/orders/{order_id}")
     public Order getOrderById(@PathVariable Integer order_id) {
         return ordersController.getOrderById(order_id);
     }
 
-    @RequestMapping(value = "/api/orders/{order_id}/item", method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/api/orders")
+    public void addOrder(@RequestBody OrderDto orderDto) {
+        ordersController.addOrder(orderDto);
+    }
+    @PostMapping("/api/orders/{order_id}/item")
     public void addItemToOrder(@PathVariable Integer order_id, @RequestBody ItemAdditionalParametrsDto itemDto) {
         ordersController.addItemToOrder(order_id, itemDto);
     }
 
-    @RequestMapping(value = "/api/orders/{order_id}/status/{status}/", method = RequestMethod.PUT,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping("/api/orders/{order_id}/status/{status}/")
     public void changeOrderStatus(@PathVariable Integer order_id, @PathVariable OrderStatus status) {
         ordersController.changeOrderStatus(order_id, status);
     }

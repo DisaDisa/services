@@ -1,26 +1,22 @@
 package com.order;
 
 import com.item.Item;
+import com.order.types.OrderItemId;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "OrderItem")
+@IdClass(OrderItemId.class)
 public class OrderItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private OrderItem id;
     private Integer item;
     private Integer order;
     private Integer amount;
 
-    @OneToOne
-    @JoinColumn(name="item_id")
-    private Item item_id;
+    @Id
+    private Integer itemId;
 
-    @OneToOne
-    @JoinColumn(name="order_id")
-    private Order order_id;
+    @Id
+    private Integer orderId;
 
     public Integer getItem() {
         return item;

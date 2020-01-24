@@ -17,22 +17,27 @@ public class ItemController {
     }
 
     @GetMapping("api/warehouse/items")
-    public List<Item> getItems() {
+    public List<Item> getItems()
+    {
+        log.info("Controller getItems");
         return itemController.getItems();
     }
 
     @GetMapping("api/warehouse/items/{item_id}")
     public Item getItemById(@PathVariable Integer item_id) {
+        log.info("Controller getItemById: id = " + item_id);
         return itemController.getItem(item_id);
     }
 
     @PostMapping("api/warehouse/items")
     public void createItem(@RequestBody ItemCreationDto addInfo) {
+        log.info("Controller createItem: " + addInfo);
         itemController.createItem(addInfo);
     }
 
     @PutMapping("api/warehouse/items/{id}/addition/{amount}")
     public void addExistingItem(@PathVariable Integer id, @PathVariable Integer amount) {
+        log.info("Controller addExistingItem: " + id + " " + amount);
         itemController.updateItem(id, amount);
     }
 }

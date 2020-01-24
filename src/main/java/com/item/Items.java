@@ -7,17 +7,21 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 
 @Service
 public class Items {
     private final ItemRepository itemRepository;
 
+    private static Logger log = Logger.getLogger(ItemController.class.getName());
+
     public Items(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
     public List<Item> getItems() {
+        log.info("Items getItems");
         ArrayList <Item> items = new ArrayList<>();
         Iterable<Item> allItems = itemRepository.findAll();
         for (Item curItem: allItems) {
@@ -27,11 +31,13 @@ public class Items {
     }
 
     public Item getItem(Integer id) {
+        log.info("Items getItem: " + id);
         Optional <Item> items = itemRepository.findById(id);
         return items.get();
     }
 
     public Item createItem(ItemCreationDto addInfo) {
+        log.info("Items createItem:" + addInfo);
         String name = addInfo.getName();
         Integer amount = addInfo.getAmount();
         Double price = addInfo.getPrice();
@@ -44,6 +50,7 @@ public class Items {
     }
 
     public Item updateItem(Integer id, Integer amount) {
+        log.info("Items updateItem: " + id + " " + amount);
         Item item = getItem(id);
         item.setAmount(item.getAmount() + amount);
         itemRepository.save(item);

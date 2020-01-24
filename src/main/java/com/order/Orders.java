@@ -6,6 +6,8 @@ import com.order.dto.OrderDto;
 import com.order.repository.OrderItemRepository;
 import com.order.repository.OrderRepository;
 import com.order.types.OrderStatus;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,8 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class Orders {
+
+
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
 
@@ -48,6 +53,7 @@ public class Orders {
     }
 
     public void addItemToOrder(Integer orderId, ItemAdditionalParametrsDto itemDto) {
+        /*
         OrderItem orderItem = new OrderItem();
 
         orderItem.setItemId(itemDto.getId());
@@ -60,6 +66,7 @@ public class Orders {
         Item item = new RestTemplate().getForObject(urlLine, Item.class);
 
         Order order = orderRepository.findById(orderId).get();
+        */
 
     }
 

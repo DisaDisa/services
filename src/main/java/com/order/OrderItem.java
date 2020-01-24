@@ -7,22 +7,27 @@ import javax.persistence.*;
 @Entity
 @Table(name = "OrderItem")
 public class OrderItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private Integer orderId;
-    private Integer itemId;
+    @EmbeddedId
+    private OrderItemKey id;
+    private Integer item;
+    private Integer order;
     private Integer amount;
 
-    public OrderItem() {
+
+    public Integer getItem() {
+        return item;
     }
 
-    public Integer getId() {
-        return id;
+    public void setItem(Integer item) {
+        this.item = item;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     public Integer getAmount() {
@@ -31,21 +36,5 @@ public class OrderItem {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public Integer getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Integer itemId) {
-        this.itemId = itemId;
     }
 }

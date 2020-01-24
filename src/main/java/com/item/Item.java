@@ -1,6 +1,9 @@
 package com.item;
 
+import com.order.OrderItem;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Items")
@@ -11,6 +14,7 @@ public class Item {
     private String name;
     private Integer amount;
     private Double price;
+
 
     public Integer getId() {
         return id;

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "OrderItem")
 public class OrderItem {
     @Id
-    @Column(name="ID_ORDERITEM")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private OrderItem id;
     private Integer item;
     private Integer order;
@@ -19,7 +19,7 @@ public class OrderItem {
     private Item item_id;
 
     @OneToOne
-    @JoinColumn(name="order_od")
+    @JoinColumn(name="order_id")
     private Order order_id;
 
     public Integer getItem() {

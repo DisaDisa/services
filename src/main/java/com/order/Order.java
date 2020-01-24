@@ -9,14 +9,15 @@ import java.util.Set;
 @Table(name = "Orders")
 public class Order {
     @Id
+    @Column(name="order_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer totalAmount;
     private Double totalCost;
     private OrderStatus status;
 
-    @OneToMany(mappedBy = "order")
-    private Set<OrderItem> orders;
+    @OneToOne(fetch = FetchType.LAZY)
+    private OrderItem orders;
 
     public Integer getId() {
         return id;

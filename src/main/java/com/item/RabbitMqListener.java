@@ -19,7 +19,7 @@ public class RabbitMqListener {
 
 
     @RabbitListener(queues = "item-update")
-    public void itemUpdateHandler(@Payload ItemUpdateDto itemUpdate) {
+    public void itemUpdateHandler(ItemUpdateDto itemUpdate) {
         log.info("itemUpdateHandler");
         itemsController.updateItem(itemUpdate.getId(), itemUpdate.getAmount());
     }

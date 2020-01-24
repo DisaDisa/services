@@ -9,12 +9,15 @@ import java.util.Set;
 @Table(name = "Items")
 public class Item {
     @Id
+    @Column(name="item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private Integer amount;
     private Double price;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    private OrderItem orders;
 
     public Integer getId() {
         return id;

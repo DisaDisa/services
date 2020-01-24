@@ -3,6 +3,7 @@ package com.order;
 import com.order.types.OrderStatus;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Order")
@@ -13,6 +14,9 @@ public class Order {
     private Integer totalAmount;
     private Double totalCost;
     private OrderStatus status;
+
+    @OneToMany(mappedBy = "order")
+    private Set<OrderItem> orders;
 
     public Integer getId() {
         return id;

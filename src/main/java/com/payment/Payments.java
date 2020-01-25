@@ -1,6 +1,7 @@
 package com.payment;
 
 
+import com.google.gson.Gson;
 import com.item.Item;
 import com.order.types.OrderStatus;
 import com.payment.dto.OrderStatusUpdateDto;
@@ -36,7 +37,9 @@ public class Payments {
         OrderStatusUpdateDto orderStatusUpdateDto = new OrderStatusUpdateDto();
         orderStatusUpdateDto.setOrderId(orderId);
         orderStatusUpdateDto.setNewStatus(orderStatus);
-        template.convertAndSend("order-status-update", orderStatusUpdateDto);
+        Gson gson = new Gson();
+        String json = gson.toJson(orderStatusUpdateDto);
+        template.convertAndSend("order-status-update", json);
 
     }
 }

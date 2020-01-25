@@ -1,6 +1,8 @@
 package com.order;
 
+import com.google.gson.Gson;
 import com.item.*;
+import com.item.dto.ItemUpdateDto;
 import com.order.dto.ItemAdditionalParametrsDto;
 import com.order.dto.OrderDto;
 import com.order.repository.OrderItemRepository;
@@ -18,6 +20,8 @@ import java.util.Optional;
 
 @Service
 public class Orders {
+    @Autowired
+    AmqpTemplate template;
 
 
     private final OrderRepository orderRepository;
@@ -53,7 +57,6 @@ public class Orders {
     }
 
     public void addItemToOrder(Integer orderId, ItemAdditionalParametrsDto itemDto) {
-        /*
         OrderItem orderItem = new OrderItem();
 
         orderItem.setItemId(itemDto.getId());
@@ -61,7 +64,13 @@ public class Orders {
         orderItem.setAmount(itemDto.getAmount());
 
         orderItemRepository.save(orderItem);
-
+        ItemUpdateDto itemUpdateDto = new ItemUpdateDto();
+        itemUpdateDto.setAmount(itemDto.getAmount());
+        itemUpdateDto.setId(itemDto.getId());
+        Gson gson = new Gson();
+        String json = gson.toJson(itemUpdateDto);
+        template.convertAndSend("item-update", json);
+        /*
         String urlLine = "http://localhost:8081/api/warehouse/items/" + itemDto.getId().toString();
         Item item = new RestTemplate().getForObject(urlLine, Item.class);
 

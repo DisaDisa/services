@@ -1,6 +1,8 @@
 package com.item;
 
+import com.google.gson.Gson;
 import com.item.dto.ItemUpdateDto;
+import com.payment.dto.OrderStatusUpdateDto;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,11 @@ public class RabbitMqListener {
 
 
     @RabbitListener(queues = "item-update")
-    public void itemUpdateHandler(ItemUpdateDto itemUpdate) {
+    public void itemUpdateHandler(String message) {
+        Gson gson = new Gson();
+        ItemUpdateDto itemUpdateDto = gson.fromJson(message, ItemUpdateDto.class);
         log.info("itemUpdateHandler");
-        itemsController.updateItem(itemUpdate.getId(), itemUpdate.getAmount());
+        itemsController.updateItem(itemUpdateDto.getId(), itemUpdateDto.getAmount());
     }
 
 }

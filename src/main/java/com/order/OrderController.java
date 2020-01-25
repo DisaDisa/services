@@ -28,7 +28,6 @@ public class OrderController {
     @GetMapping("/api/orders")
     public List<Order> getOrders() {
         log.info("Controller getOrders");
-        template.convertAndSend("order-status-update","Message to queue");
         return ordersController.getOrders();
     }
 

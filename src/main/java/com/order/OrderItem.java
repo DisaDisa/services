@@ -8,8 +8,6 @@ import javax.persistence.*;
 @Entity
 @IdClass(OrderItemId.class)
 public class OrderItem {
-    private Integer item;
-    private Integer order;
     private Integer amount;
 
     @Id
@@ -18,21 +16,7 @@ public class OrderItem {
     @Id
     private Integer orderId;
 
-    public Integer getItem() {
-        return item;
-    }
 
-    public void setItem(Integer item) {
-        this.item = item;
-    }
-
-    public Integer getOrder() {
-        return order;
-    }
-
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
 
     public Integer getAmount() {
         return amount;
@@ -40,5 +24,21 @@ public class OrderItem {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

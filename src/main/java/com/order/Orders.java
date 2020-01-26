@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -23,6 +21,14 @@ public class Orders {
     @Autowired
     AmqpTemplate template;
 
+    private static Map<OrderStatus, OrderStatus> statusTransitionMap = new HashMap<>();
+    static {
+        statusTransitionMap.put(OrderStatus.PAID, OrderStatus.COLLECTING);
+        statusTransitionMap.put(OrderStatus.FAILED, OrderStatus.COLLECTING);
+        statusTransitionMap.put(OrderStatus.SHIPPING, OrderStatus.PAID);
+        statusTransitionMap.put(OrderStatus.CANCELLED, OrderStatus.PAID);
+        statusTransitionMap.put(OrderStatus.COMPLETE, OrderStatus.SHIPPING);
+    }
 
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
@@ -80,8 +86,15 @@ public class Orders {
     }
 
     public void changeOrderStatus(Integer orderId, OrderStatus status) {
+        //TODO DIAS
+        //TODO GETORDERBYID возвращало айтемы
+
         Order order = orderRepository.findById(orderId).get();
-        order.setStatus(status);
-        orderRepository.save(order);
+        OrderStatus currentStatus = order.getStatus();
+
+        if (statusTransitionMap.get(status) == currentStatus){
+            order.setStatus(status);
+            orderRepository.save(order);
+        }
     }
 }

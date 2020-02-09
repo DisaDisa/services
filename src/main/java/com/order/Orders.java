@@ -23,7 +23,7 @@ public class Orders {
 
     private static Map<OrderStatus, OrderStatus> statusTransitionMap = new HashMap<>();
     static {
-        statusTransitionMap.put(OrderStatus.PAID, OrderStatus.COLLECTING);
+        statusTransitionMap.put(OrderStatus.PAID, OrderStatus.COLLECTING);
         statusTransitionMap.put(OrderStatus.FAILED, OrderStatus.COLLECTING);
         statusTransitionMap.put(OrderStatus.SHIPPING, OrderStatus.PAID);
         statusTransitionMap.put(OrderStatus.CANCELLED, OrderStatus.PAID);

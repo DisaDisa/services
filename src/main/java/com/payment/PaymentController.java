@@ -22,7 +22,7 @@ public class PaymentController {
     }
 
 
-    @PutMapping("api/orders/{order_id}/payment")
+    @PutMapping("api/payment/{order_id}/payment")
     public void performPayment(@PathVariable Integer order_id, @RequestBody UserDetailsDto userDetailsDto) {
         paymentsController.performPayment(order_id, userDetailsDto);
     }

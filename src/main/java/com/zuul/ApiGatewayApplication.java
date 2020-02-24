@@ -11,6 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 @EnableZuulProxy
 @EnableEurekaClient
 @PropertySource("classpath:/zuul.properties")
+@PropertySource("classpath:/zuul.yml")
 public class ApiGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayApplication.class, args);

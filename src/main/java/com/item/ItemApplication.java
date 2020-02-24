@@ -7,6 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @PropertySource("classpath:/item.properties")
+@PropertySource("classpath:/item.yml")
 public class ItemApplication {
     public static void main(String[] args) {
         SpringApplication.run(ItemApplication.class, args);

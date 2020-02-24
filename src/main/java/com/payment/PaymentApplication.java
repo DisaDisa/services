@@ -7,6 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @PropertySource("classpath:/payment.properties")
+@PropertySource("classpath:/payment.yml")
 public class PaymentApplication {
     public static void main(String[] args) {
         SpringApplication.run(PaymentApplication.class, args);

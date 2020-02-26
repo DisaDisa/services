@@ -9,8 +9,8 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootApplication
 @EnableEurekaServer
 @PropertySource("classpath:/eureka-server.properties")
+@PropertySource("classpath:/eureka-server.yml")
 public class EurekaApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(EurekaApplication.class, args);
     }

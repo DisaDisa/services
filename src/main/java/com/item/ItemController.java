@@ -30,14 +30,14 @@ public class ItemController {
     }
 
     @PostMapping("api/warehouse/items")
-    public void createItem(@RequestBody ItemCreationDto addInfo) {
+    public Item createItem(@RequestBody ItemCreationDto addInfo) {
         log.info("Controller createItem: " + addInfo);
-        itemController.createItem(addInfo);
+        return itemController.createItem(addInfo);
     }
 
     @PutMapping("api/warehouse/items/{id}/addition/{amount}")
-    public void addExistingItem(@PathVariable Integer id, @PathVariable Integer amount) {
+    public Item addExistingItem(@PathVariable Integer id, @PathVariable Integer amount) {
         log.info("Controller addExistingItem: " + id + " " + amount);
-        itemController.updateItem(id, amount);
+        return itemController.updateItem(id, amount);
     }
 }

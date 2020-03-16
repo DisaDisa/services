@@ -58,7 +58,27 @@ public class Orders {
 
     public OrderItemDto getOrderById(Integer orderId) {
         Optional<Order> orders = orderRepository.findById(orderId);
-        return orders.get();
+        Order order = orders.get();
+        OrderItemDto orderDto = new OrderItemDto();
+        orderDto.setStatus(order.getStatus());
+        orderDto.setTotalCost(order.getTotalCost());
+        orderDto.setTotalAmount(order.getTotalAmount());
+        orderDto.setId(order.getId());
+
+        String url = "http://localhost:8081/api/warehouse/items/";
+        ArrayList<Item> items = new ArrayList<>();
+        Iterable<OrderItem> allOrderItems = orderItemRepository.findAll();
+
+        for (OrderItem curOrderItem : allOrderItems) {
+            if (curOrderItem.getOrderId() == orderId) {
+                int itemId = curOrderItem.getItemId();
+                Item item = new RestTemplate().getForObject(url + Integer.toString(itemId), Item.class);
+                items.add(item);
+            }
+        }
+        System.out.println(items.size());
+        orderDto.setItems(items);
+        return orderDto;
     }
 
     public void addOrder(OrderDto orderDto) {

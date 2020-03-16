@@ -3,6 +3,7 @@ package com.order;
 import com.item.ItemController;
 import com.order.dto.ItemAdditionalParametrsDto;
 import com.order.dto.OrderDto;
+import com.order.dto.OrderItemDto;
 import com.order.types.OrderStatus;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,18 @@ public class OrderController {
     }
 
     @GetMapping("/api/orders")
-    public List<Order> getOrders() {
+    public List<OrderDto> getOrders() {
         log.info("Controller getOrders");
         return ordersController.getOrders();
     }
-
+    //TODO change return value to OrderDto
     @GetMapping("/api/orders/{order_id}")
-    public Order getOrderById(@PathVariable Integer order_id) {
+    public OrderItemDto getOrderById(@PathVariable Integer order_id) {
         log.info("Controller getOrderById " + order_id);
         return ordersController.getOrderById(order_id);
     }
-
+    //TODO wrong dto name inside nd create another object or maybe change it somehow
+    // (might be just add by adding item in it)
     @PostMapping("/api/orders")
     public void addOrder(@RequestBody OrderDto orderDto) {
         log.info("Controller addOrder " + orderDto);

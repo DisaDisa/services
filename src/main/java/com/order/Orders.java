@@ -1,10 +1,12 @@
 package com.order;
 
 import com.google.gson.Gson;
-import com.item.*;
+import com.item.Item;
 import com.item.dto.ItemUpdateDto;
+import com.netflix.appinfo.EurekaInstanceConfig;
 import com.order.dto.ItemAdditionalParametrsDto;
 import com.order.dto.OrderDto;
+import com.order.dto.OrderItemDto;
 import com.order.repository.OrderItemRepository;
 import com.order.repository.OrderRepository;
 import com.order.types.OrderStatus;
@@ -13,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 
@@ -38,16 +42,21 @@ public class Orders {
         this.orderItemRepository = orderItemRepository;
     }
 
-    public List<Order> getOrders() {
-        ArrayList<Order> orders = new ArrayList<>();
+    public List<OrderDto> getOrders() {
+        ArrayList<OrderDto> orders = new ArrayList<>();
         Iterable<Order> allOrders = orderRepository.findAll();
         for (Order curOrder : allOrders) {
-            orders.add(curOrder);
+            OrderDto order = new OrderDto();
+            order.setStatus(curOrder.getStatus());
+            order.setTotalAmount(curOrder.getTotalAmount());
+            order.setTotalCost(curOrder.getTotalCost());
+            order.setId(curOrder.getId());
+            orders.add(order);
         }
         return orders;
     }
 
-    public Order getOrderById(Integer orderId) {
+    public OrderItemDto getOrderById(Integer orderId) {
         Optional<Order> orders = orderRepository.findById(orderId);
         return orders.get();
     }
@@ -86,9 +95,6 @@ public class Orders {
     }
 
     public void changeOrderStatus(Integer orderId, OrderStatus status) {
-        //TODO DIAS
-        //TODO GETORDERBYID возвращало айтемы
-
         Order order = orderRepository.findById(orderId).get();
         OrderStatus currentStatus = order.getStatus();
 
